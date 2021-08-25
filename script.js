@@ -8,7 +8,17 @@ function displayTime() {
 
 setInterval(displayTime, 1000);
 //Selection Sterilized Function for calander
-
+  $( function() {
+    $( "#selectable" ).selectable({
+      stop: function() {
+        var result = $( "#select-result" ).empty();
+        $( ".ui-selected", this ).each(function() {
+          var index = $( "#selectable li" ).index( this );
+          result.append( " #" + ( index + 1 ) );
+        });
+      }
+    });
+  } );
 //Function to color code time blocks past, present, future
 
 //Click Function within timeblock to add Event
