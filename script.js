@@ -6,21 +6,8 @@ function displayTime() {
     timeDisplay.text(rightNow)
 }
 
-
+setInterval(displayTime, 1000);
 //Selection Sterilized Function for calander
-var timeBlockData = function (name, comment) {
-  var cardColumnEl = $("<table>");
-  cardColumnEl.addClass(".time-block");
-
-
-var cardEl = $("<td>");
-  // Add a class of .custom-card
-  cardEl.addClass(".hour");
-  cardEl.appendTo(cardColumnEl);
-
-  var cardName = $("<td>").addClass(".submitBtn").text(name);
-  cardName.appendTo(cardEl);
-}
 
 //Function to color code time blocks past, present, future
 
@@ -30,4 +17,3 @@ var cardEl = $("<td>");
 
 //Function to save to client local storage.
 
-setInterval(displayTime, 1000);
