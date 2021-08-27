@@ -46,16 +46,14 @@ function saveTextEdit() {
 //Function to test for past, present and future
 var currentHour = (new Date()).getHours();
 
-$('.colorcode')
+$(".time-block")
   .each(function(){
     var val = parseInt($(this).prop('id'));
     if(val > currentHour && val < currentHour + 6){
-      $(this).css('background-color','Blue');
+      $(this).css(".future");
     }else if(val < currentHour && val > currentHour-6){
-      $(this).css('background-color','Red');
+      $(this).css(".past");
     }else if(val === currentHour){
-      $(this).css('background-color','Green');
-    }else{
-      $(this).css('background-color','White');
+      $(this).css(".present");
     }
   });
