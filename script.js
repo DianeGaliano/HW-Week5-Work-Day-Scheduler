@@ -45,16 +45,13 @@ function saveTextEdit() {
 
 var currentHour = (new Date()).getHours();
 
-$(".colorcode").each(function(){
+$(".hour").each(function(){
     var val = parseInt($(this).prop("id"));
     if(val > currentHour && val < currentHour + 6){
-      //Future
       $(this).css("background-color: #77dd77", "color: white");
     }else if(val === currentHour){
-      //Current
       $(this).css("background-color: #ff6961", "color: white");
     }else{
-      //Past
-      $(this).css("background-color: #d3d3d3", "color: white");
+      $(this).css( "background-color: #d3d3d3", "color: white");
     }
   });
