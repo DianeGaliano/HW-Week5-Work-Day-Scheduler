@@ -23,10 +23,6 @@ function saveText() {
   localStorage.setItem("textEdit", JSON.stringify(textEdit));
 }
 
-var message = {
-
-}
-
 saveButton.addEventListener("click", function(event) {
   event.preventDefault();
   renderText();
