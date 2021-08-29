@@ -9,49 +9,36 @@ function displayTime() {
 setInterval(displayTime, 1000);
 
 //Save Button 
-var comment = document.getElementById("msg");
-var saveButton = document.getElementById("save-button");
+var comment = document.getElementById("msg")
+var saveButton = document.getElementById("save-button")
 
-// Function to save to local storage with event listener
-function saveTextEdit() {
-    var editText = {
-      comment: comment.value.trim()
-    };
-    localStorage.setItem("editText", JSON.stringify(editText));
+
+function saveText() {
+  // Save related form data as an object
+  var textEdit = {
+  comment: comment.value.trim()
+  };
+  // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+  localStorage.setItem("textEdit", JSON.stringify(textEdit));
+}
+
+function renderText() {
+  var lastEdit = JSON.parse(localStorage.getItem("textEdit"));
+   if (lastEdit !== null) {
+    document.getElementById("msg").innerHTML = lastEdit.comment;
+  }else {
+  return;
   }
-  
-  function renderTextEdit() {
-    var lastTextEdit = JSON.parse(localStorage.getItem("editText"));
-    if (lastTextEdit !== null) {
-    document.getElementById("msg").innerHTML = lastTextEdit.comment;
-    } else {
-      return;
-    }
-  }
-  
-  saveButton.addEventListener("click", function(event) {
+}
+
+saveButton.addEventListener("click", function(event) {
   event.preventDefault();
-  saveTextEdit();
-  renderTextEdit();
-  });
-  
-  function init() {
-    renderTextEdit();
-  }
-  init();
+  renderText();
+  saveText();
+});
 
-
-//Function to test for past, present and future
-
-var currentHour = (new Date()).getHours();
-
-$(".hour").each(function(){
-    var val = parseInt($(this).prop("id"));
-    if(val > currentHour && val < currentHour + 6){
-      $(this).css("background-color: #77dd77", "color: white");
-    }else if(val === currentHour){
-      $(this).css("background-color: #ff6961", "color: white");
-    }else{
-      $(this).css( "background-color: #d3d3d3", "color: white");
-    }
-  });
+function init() {
+  // When the init function is executed, the code inside renderLastGrade function will also execute
+  renderText();
+}
+init();
