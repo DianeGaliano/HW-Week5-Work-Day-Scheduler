@@ -12,6 +12,7 @@ setInterval(displayTime, 1000);
 var comment = document.getElementById("msg")
 var saveButton = document.getElementById("save-button")
 
+var messageInput = document.querySelector("#msg")
 
 function saveText() {
   // Save related form data as an object
@@ -22,13 +23,8 @@ function saveText() {
   localStorage.setItem("textEdit", JSON.stringify(textEdit));
 }
 
-function renderText() {
-  var lastEdit = JSON.parse(localStorage.getItem("textEdit"));
-   if (lastEdit !== null) {
-    document.getElementById("msg").innerHTML = lastEdit.comment;
-  }else {
-  return;
-  }
+var message = {
+
 }
 
 saveButton.addEventListener("click", function(event) {
@@ -38,7 +34,23 @@ saveButton.addEventListener("click", function(event) {
 });
 
 function init() {
-  // When the init function is executed, the code inside renderLastGrade function will also execute
+  var lastEdit = JSON.parse(localStorage.getItem("textEdit"));
+   if (lastEdit !== null) {
+    document.getElementById("msg").innerHTML = lastEdit.comment;
+  }else {
+  return;
+  } 
   renderText();
 }
-init();
+
+//Color
+$(".colorCode").each(function(){
+  var time = parseInt($(this).prop("id"));
+  if (time === timeDisplay){
+    $(this).addClass("present");
+  }else if(time < timeDisplay){
+    $(this).addClass("past");
+  }else{
+    $(this).addClass("future");
+  }
+});
